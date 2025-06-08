@@ -4,7 +4,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name='csrf-token' content="{{ csrf_token() }}">
+    
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Font Awesome CDN for icons (Add in <head> if not included) -->
@@ -44,6 +45,14 @@
 
 
       </ul>
+      @auth
+        <li class="nav-item">
+          <form action="{{ route('blogs.singout') }}" method="post">
+            @csrf
+            <button type="submit" class="btn btn-outline-danger">Logout</button>
+          </form>
+        </li>
+      @endauth
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
                 <button class="btn btn-outline-success" type="submit">Search</button>
