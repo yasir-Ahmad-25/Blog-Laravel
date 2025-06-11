@@ -9,13 +9,13 @@ use Illuminate\Support\Facades\Route;
 // index
 Route::get('/', [BlogController::class, 'index'])->name('blogs.index');
 
-
+// authenticated users can access these pages
 Route::middleware('auth')->controller(UserController::class)->group(function(){
     Route::post('singout', [BlogController::class, 'singout'])->name('blogs.singout');
 });
 
 
-
+// non authenticated users can access these pages
 Route::middleware('guest')->controller(UserController::class)->group(function(){
     // Authentication pages
     Route::get('signup', [UserController::class, 'signup'])->name('blogs.signup');

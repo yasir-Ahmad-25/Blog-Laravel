@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('profile_image' , 255)->nullable()->after('email');
-            $table->string('github_link' , 255)->nullable()->after('created_at');
-            $table->string('linkden_link' , 255)->nullable()->after('created_at');
-            $table->string('youtube_link' , 255)->nullable()->after('created_at');
+            $table->string('proffession' , 255)->nullable()->after('profile_image');
+            $table->text('about_me')->nullable()->after('profile_image');
+            $table->integer('total_followers')->default(0)->after('profile_image');
+            $table->integer('total_following')->default(0)->after('profile_image');
         });
     }
 
